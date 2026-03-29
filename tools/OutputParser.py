@@ -1,6 +1,6 @@
 from pathlib import Path
 from collections.abc import Sequence
-from data_model.Schemas import Income, Expense
+from data_model.schemas import Income, Expense
 from dataclasses import asdict
 import json
 from datetime import date

@@ -1,6 +1,6 @@
 from io import TextIOWrapper
 from pathlib import Path
-from data_model.Schemas import Expense, Income
+from data_model.schemas import Expense, Income
 from collections.abc import Callable, MutableMapping, Generator
 from datetime import date
 import json

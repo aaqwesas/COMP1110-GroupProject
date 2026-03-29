@@ -1,6 +1,6 @@
 from enum import StrEnum
 
-from data_model.Schemas import ExpenseCategory, IncomeCategory
+from data_model.categories import ExpenseCategory, IncomeCategory
 
 
 class GenericCategoryParser[T: StrEnum]:
