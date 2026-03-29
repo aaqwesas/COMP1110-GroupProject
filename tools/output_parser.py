@@ -1,3 +1,4 @@
+from io import TextIOWrapper
 from pathlib import Path
 from collections.abc import Sequence
 from data_model.schemas import Income, Expense
@@ -13,17 +14,21 @@ class ParsedFormat(TypedDict):
     category: str
     description: str
 
+
 class GenericOutputParser[T: (Income, Expense)]:
     def __call__(self, path: Path, records: Sequence[T]) -> None:
         with open(file=path, mode="a", encoding="utf-8") as file:
             for item in records:
-                parsed_dict = ParsedFormat(
-                    id=item.id,
-                    date=item.date.isoformat(),
-                    amount=item.amount,
-                    category=item.category.name,
-                    description=item.description
-                )
+                self._handle_record(item=item, file=file)
 
-                json.dump(parsed_dict, file)
-                file.write("\n")
+    def _handle_record(self, item: T, file: TextIOWrapper) -> None:
+        parsed_dict = ParsedFormat(
+            id=item.id,
+            date=item.date.isoformat(),
+            amount=item.amount,
+            category=item.category.name,
+            description=item.description,
+        )
+
+        json.dump(parsed_dict, file)
+        file.write("\n")
