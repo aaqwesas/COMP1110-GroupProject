@@ -4,7 +4,7 @@ from data_model.schemas import Expense, Income
 from collections.abc import Callable, MutableMapping, Generator
 from datetime import date
 import json
-from CategoryParser import ExpenseCategoryParser, IncomeCategoryParser
+from tools.category_parser import ExpenseCategoryParser, IncomeCategoryParser
 
 
 class GenericJsonParser[T]:

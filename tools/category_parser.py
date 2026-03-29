@@ -10,7 +10,7 @@ class GenericCategoryParser[T: StrEnum]:
 
     def __call__(self, input: str) -> T:
         try:
-            return self.enum_type[input.lower()]
+            return self.enum_type[input.upper()]
         except KeyError:
             print(
                 f"No such category '{input}', classifying as {self.default_category.name}"
