@@ -133,7 +133,6 @@ class TestOutputParser(unittest.TestCase):
         self.assertEqual(json.loads(lines[1])["id"], "inc_002")
 
     def test_empty_records_list(self):
-        """Test that passing an empty list creates an empty file."""
         self.parser(self.temp_path, [])
 
         self.assertTrue(self.temp_path.exists())
@@ -141,9 +140,7 @@ class TestOutputParser(unittest.TestCase):
             content = f.read()
         self.assertEqual(content, "")
 
-
     def test_date_serialization(self):
-        """Test that date objects are serialized as ISO format strings."""
         records = [
             Income(
                 id="inc_001",
@@ -161,7 +158,6 @@ class TestOutputParser(unittest.TestCase):
         self.assertEqual(data["date"], "2024-12-25")
 
     def test_enum_serialization(self):
-        """Test that StrEnum categories are serialized as strings."""
         records = [
             Expense(
                 id="exp_001",
@@ -180,7 +176,6 @@ class TestOutputParser(unittest.TestCase):
         self.assertIsInstance(data["category"], str)
 
     def test_float_precision(self):
-        """Test that float amounts are preserved correctly."""
         records = [
             Expense(
                 id="exp_001",
@@ -198,7 +193,6 @@ class TestOutputParser(unittest.TestCase):
         self.assertEqual(data["amount"], 99.99)
 
     def test_all_expense_categories(self):
-        """Test that all expense categories can be serialized."""
         records = [
             Expense(
                 id=f"exp_{cat.value}",
