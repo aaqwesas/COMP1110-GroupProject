@@ -13,7 +13,7 @@ class ExpenseCategory(StrEnum):
     SUBSCRIPTION = auto()
     ENTERTAINMENT = auto()
     MEDICAL = auto()
-    UNCATEORIED = auto()
+    UNCATEGORIZED = auto()
 
 
 @unique
