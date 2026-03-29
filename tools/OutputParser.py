@@ -1,14 +1,18 @@
-from enum import StrEnum
-import json
 from pathlib import Path
 from collections.abc import Sequence
-import dataclasses
+from data_model.Schemas import Income, Expense
+from dataclasses import asdict
+import json
+from datetime import date
 
 
-
-
-class GenericOutputParser[T: dataclasses.]:
-    def __call__(self, path: Path, records: Sequence[type[T]] ) -> None:
+class GenericOutputParser[T: (Income, Expense)]:
+    def __call__(self, path: Path, records: Sequence[T]) -> None:
         with open(file=path, mode="a", encoding="utf-8") as file:
             for item in records:
-                file.write(item.to_dict(), )
+                json.dump(asdict(item), file)
+                file.write("\n")
+
+    @staticmethod
+    def _parse_date(record_date: date) -> str:
+        return record_date.isoformat()

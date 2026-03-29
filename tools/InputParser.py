@@ -55,10 +55,10 @@ class ExpenseParser(GenericJsonParser[Expense]):
 
 class IncomeParser(GenericJsonParser[Income]):
     def __init__(self, path: Path):
-        super().__init__(path=path, item_parser=self._parse_expense)
+        super().__init__(path=path, item_parser=self._parse_income)
 
     @staticmethod
-    def _parse_expense(item: MutableMapping) -> Income:
+    def _parse_income(item: MutableMapping) -> Income:
         return Income(
             id=item["id"],
             date=date.fromisoformat(item["date"]),

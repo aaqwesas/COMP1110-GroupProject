@@ -23,7 +23,7 @@ class IncomeCategory(StrEnum):
     INVESTMENT = auto()
     TRADE = auto()
     DIVIDEND = auto()
-    UNCATEORIED = auto()
+    UNCATEGORIZED = auto()
 
 
 @dataclass(slots=True)

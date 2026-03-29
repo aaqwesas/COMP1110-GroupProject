@@ -19,8 +19,8 @@ class GenericCategoryParser[T: StrEnum]:
 
 
 IncomeCategoryParser: GenericCategoryParser[IncomeCategory] = GenericCategoryParser(
-    enum_type=IncomeCategory, default_category=IncomeCategory.UNCATEORIED
+    enum_type=IncomeCategory, default_category=IncomeCategory.UNCATEGORIZED
 )
 ExpenseCategoryParser: GenericCategoryParser[ExpenseCategory] = GenericCategoryParser(
-    enum_type=ExpenseCategory, default_category=ExpenseCategory.UNCATEORIED
+    enum_type=ExpenseCategory, default_category=ExpenseCategory.UNCATEGORIZED
 )
