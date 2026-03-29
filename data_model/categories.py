@@ -21,4 +21,5 @@ class IncomeCategory(StrEnum):
     INVESTMENT = auto()
     TRADE = auto()
     DIVIDEND = auto()
+    FREELANCE = auto()
     UNCATEGORIZED = auto()

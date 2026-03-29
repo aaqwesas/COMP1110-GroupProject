@@ -40,7 +40,7 @@ class ExpenseParser(GenericJsonParser[Expense]):
         return Expense(
             id=item["id"],
             date=date.fromisoformat(item["date"]),
-            amount=item["amount"],
+            amount=float(item["amount"]),
             category=ExpenseCategoryParser(item["category"]),
             description=item["description"],
         )
@@ -55,7 +55,7 @@ class IncomeParser(GenericJsonParser[Income]):
         return Income(
             id=item["id"],
             date=date.fromisoformat(item["date"]),
-            amount=item["amount"],
+            amount=float(item["amount"]),
             category=IncomeCategoryParser(item["category"]),
             description=item["description"],
         )
