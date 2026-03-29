@@ -1,2 +1,5 @@
 # Data Model
 
+### IncomeCategory
+
+### SpendingCategory

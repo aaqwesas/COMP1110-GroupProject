@@ -1,19 +1,18 @@
 from dataclasses import dataclass
-from datetime import datetime
+from datetime import date
 from enum import StrEnum, unique, auto
 
 
 @unique
-class SpedningCategory(StrEnum):
+class ExpenseCategory(StrEnum):
     EDUCATION = auto()
     RENT = auto()
     FOOD = auto()
-    GIFT = auto()
     DRINKS = auto()
     TRAFFIC = auto()
+    SUBSCRIPTION = auto()
     ENTERTAINMENT = auto()
     MEDICAL = auto()
-    SOCIAL = auto()
     UNCATEORIED = auto()
 
 
@@ -27,17 +26,19 @@ class IncomeCategory(StrEnum):
     UNCATEORIED = auto()
 
 
-@dataclass(slots=True, frozen=True)
+@dataclass(slots=True)
 class Expense:
-    date: datetime
+    id: str
+    date: date
     amount: float
-    category: SpedningCategory
+    category: ExpenseCategory
     description: str
 
 
-@dataclass(frozen=True, slots=True)
+@dataclass(slots=True)
 class Income:
-    date: datetime
+    id: str
+    date: date
     amount: float
     category: IncomeCategory
     description: str
