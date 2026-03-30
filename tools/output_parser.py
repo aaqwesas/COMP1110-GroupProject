@@ -1,6 +1,6 @@
 from io import TextIOWrapper
 from pathlib import Path
-from collections.abc import Sequence
+from collections.abc import Iterable
 from data_model.schemas import Income, Expense
 import json
 from datetime import date
@@ -16,7 +16,7 @@ class ParsedFormat(TypedDict):
 
 
 class GenericOutputParser[T: (Income, Expense)]:
-    def __call__(self, path: Path, records: Sequence[T]) -> None:
+    def __call__(self, path: Path, records: Iterable[T]) -> None:
         with open(file=path, mode="a", encoding="utf-8") as file:
             for item in records:
                 self._handle_record(item=item, file=file)

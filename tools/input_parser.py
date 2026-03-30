@@ -1,16 +1,16 @@
 from io import TextIOWrapper
 from pathlib import Path
 from data_model.schemas import Expense, Income
-from collections.abc import Callable, MutableMapping, Generator
+from collections.abc import Callable, Mapping, Generator
 from datetime import date
 import json
 from tools.category_parser import ExpenseCategoryParser, IncomeCategoryParser
 
 
 class GenericJsonParser[T]:
-    def __init__(self, path: Path, item_parser: Callable[[MutableMapping], T]) -> None:
+    def __init__(self, path: Path, item_parser: Callable[[Mapping], T]) -> None:
         self._path: Path = path
-        self._item_parser: Callable[[MutableMapping], T] = item_parser
+        self._item_parser: Callable[[Mapping], T] = item_parser
         if self._path.suffix.lower() != ".jsonl":
             raise ValueError(f"File must be JSONL format, got: {self._path.suffix}")
 
@@ -36,7 +36,7 @@ class ExpenseParser(GenericJsonParser[Expense]):
         super().__init__(path=path, item_parser=self._parse_expense)
 
     @classmethod
-    def _parse_expense(cls, item: MutableMapping) -> Expense:
+    def _parse_expense(cls, item: Mapping) -> Expense:
         return Expense(
             id=item["id"],
             date=date.fromisoformat(item["date"]),
@@ -51,7 +51,7 @@ class IncomeParser(GenericJsonParser[Income]):
         super().__init__(path=path, item_parser=self._parse_income)
 
     @classmethod
-    def _parse_income(cls, item: MutableMapping) -> Income:
+    def _parse_income(cls, item: Mapping) -> Income:
         return Income(
             id=item["id"],
             date=date.fromisoformat(item["date"]),
