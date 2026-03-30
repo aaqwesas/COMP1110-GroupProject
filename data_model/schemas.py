@@ -21,4 +21,4 @@ class Income:
     description: str
 
 
-type Transcation = Expense | Income
+type Transaction = Expense | Income
