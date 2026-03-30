@@ -1,1 +1,2 @@
-# COMP1110-GroupProject
+# Personal Budget and Spending Assistant
+

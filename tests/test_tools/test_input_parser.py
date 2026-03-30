@@ -3,14 +3,12 @@ import unittest
 import tempfile
 import json
 from pathlib import Path
-from unittest.mock import patch, mock_open
+from unittest.mock import patch
 from io import StringIO
 
 
-from data_model.categories import ExpenseCategory, IncomeCategory
-from data_model.schemas import Expense, Income
-from tools.category_parser import IncomeCategoryParser, ExpenseCategoryParser
-from tools.input_parser import ExpenseParser, IncomeParser
+from data_model.categories import ExpenseCategory
+from tools.input_parser import ExpenseParser
 
 
 class TestExpenseParser(unittest.TestCase):

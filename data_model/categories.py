@@ -23,3 +23,6 @@ class IncomeCategory(StrEnum):
     DIVIDEND = auto()
     FREELANCE = auto()
     UNCATEGORIZED = auto()
+
+
+type Categories = ExpenseCategory | IncomeCategory

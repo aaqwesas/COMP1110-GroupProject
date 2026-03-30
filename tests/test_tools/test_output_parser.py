@@ -2,9 +2,7 @@ from datetime import date
 import json
 import unittest
 import tempfile
-from unittest.mock import mock_open, patch
 from pathlib import Path
-from io import StringIO
 
 from data_model.categories import ExpenseCategory, IncomeCategory
 from data_model.schemas import Expense, Income

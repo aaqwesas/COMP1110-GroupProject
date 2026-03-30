@@ -1,7 +1,7 @@
 from io import TextIOWrapper
 from pathlib import Path
 from collections.abc import Iterable
-from data_model.schemas import Income, Expense
+from data_model.schemas import Transcation
 import json
 from datetime import date
 from typing import TypedDict
@@ -15,7 +15,7 @@ class ParsedFormat(TypedDict):
     description: str
 
 
-class GenericOutputParser[T: (Income, Expense)]:
+class GenericOutputParser[T: Transcation]:
     def __call__(self, path: Path, records: Iterable[T]) -> None:
         with open(file=path, mode="a", encoding="utf-8") as file:
             for item in records:

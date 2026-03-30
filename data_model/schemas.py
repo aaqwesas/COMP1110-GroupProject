@@ -19,3 +19,6 @@ class Income:
     amount: float
     category: IncomeCategory
     description: str
+
+
+type Transcation = Expense | Income
