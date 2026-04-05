@@ -1,7 +1,9 @@
 from abc import ABC, abstractmethod
-from typing import Any
 
 
 class Alert(ABC):
     @abstractmethod
-    def __call__(self, message: str) -> None: ...
+    def send(self, message: str) -> None: ...
+
+    def __call__(self, message: str) -> None:
+        self.send(message=message)
