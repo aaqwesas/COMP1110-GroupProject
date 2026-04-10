@@ -60,17 +60,20 @@ class SummaryStatistics:
 
     # Core Totals
 
+    @property
     def total_spending(self) -> float:
         """Sum of every expense. Returns 0.0 if there aren't any."""
         return sum(e.amount for e in self._expenses)
 
+    @property
     def total_income(self) -> float:
         """Sum of every income. Returns 0.0 if there aren't any."""
         return sum(i.amount for i in self._incomes)
 
+    @property
     def net_balance(self) -> float:
         """Income minus spending. Positive = you're saving, negative = uh oh."""
-        return self.total_income() - self.total_spending()
+        return self.total_income - self.total_spending
 
     # Per-Category Totals (cached)
 
@@ -103,7 +106,7 @@ class SummaryStatistics:
         """Income per category, highest first. Also a copy."""
         return dict(self._cached_income_by_category)
 
-    # Top-N Categories 
+    # Top-N Categories
 
     def top_spending_categories(
         self, n: int = 3
@@ -243,16 +246,16 @@ class SummaryStatistics:
             return None
         return ((current_total - prev_total) / prev_total) * 100.0
 
-    # Full Summary Report 
+    # Full Summary Report
 
     def summary(self, ref_date: date | None = None) -> SummaryReport:
         """Everything in one dict — plug this straight into a dashboard
         or report template."""
         ref = ref_date or date.today()
         return SummaryReport(
-            total_spending=self.total_spending(),
-            total_income=self.total_income(),
-            net_balance=self.net_balance(),
+            total_spending=self.total_spending,
+            total_income=self.total_income,
+            net_balance=self.net_balance,
             spending_by_category=self.spending_by_category(),
             income_by_category=self.income_by_category(),
             top_3_spending_categories=self.top_spending_categories(3),
@@ -265,7 +268,7 @@ class SummaryStatistics:
             spending_change_30d_pct=self.spending_change(30, ref),
         )
 
-    # Private Helpers 
+    # Private Helpers
 
     def _filter_by_date[T: (Expense, Income)](
         self,
