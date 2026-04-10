@@ -1,5 +1,4 @@
 from dataclasses import dataclass
-import operator
 from data_model.rules import BudgetRule
 from data_model.schemas import Transaction, Expense
 
@@ -25,9 +24,9 @@ class CategoryBudgetRule(BudgetRule):
 
         if self.operator(total_with_current, self.threshold):
             self.alert(
-                message = f"You have exceeded your {self.schema.category.name} budget from the last {self.period} days! "
-                f"Limit: {self.threshold:.2f}, Acumulated: {total_with_current:.2f}"
-                f"(includes the new ransaction of ${transaction.amount:.2f})"
+                message = f"You have exceeded your {self.schema.category.name} budget from the last {self.period} days!"
+                f"Limit: {self.threshold:.2f}, Accumulated: {total_with_current:.2f}"
+                f"(includes the new transaction of ${transaction.amount:.2f})"
             )
             return True
         return False
