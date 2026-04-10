@@ -11,10 +11,10 @@ class CategoryBudgetRule(BudgetRule):
         start_date, end_date = self.get_range(transaction.date)
         period_total = 0.0
 
-        for transaction in history:
-            if isinstance(transaction, Expense):
-                if start_date <= transaction.date <= end_date:
-                    period_total += transaction.amount
+        for past_transaction in history:
+            if isinstance(past_transaction, Expense):
+                if start_date <= past_transaction.date <= end_date:
+                    period_total += past_transaction.amount
 
         total_with_current = period_total + transaction.amount
 
