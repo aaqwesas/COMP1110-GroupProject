@@ -270,7 +270,7 @@ class SummaryStatistics:
 
     # Private Helpers
 
-    def _filter_by_date[T: (Expense, Income)](
+    def _filter_by_date[T: Transaction](
         self,
         records: list[T],
         start: date | None = None,
