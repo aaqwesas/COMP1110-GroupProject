@@ -4,7 +4,6 @@ from dataclasses import dataclass
 from datetime import date, timedelta
 
 from data_model.alerts import Alert
-
 from .schemas import Transaction
 
 
@@ -21,7 +20,7 @@ class BudgetRule(ABC):
             raise ValueError("Period must be positive")
 
     @abstractmethod
-    def evaluate(self, transaction: Transaction) -> bool: ...
+    def evaluate(self, transaction: Transaction, history: list[Transaction]) -> bool: ...
 
     def get_range(self, ref_date: date) -> tuple[date, date]:
-        return ref_date, ref_date + timedelta(days=self.period)
+        return ref_date - timedelta(days=self.period), ref_date
