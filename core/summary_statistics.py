@@ -43,8 +43,8 @@ class SummaryStatistics:
     Usage::
 
         stats = SummaryStatistics(transactions)
-        print(stats.total_spending())
-        print(stats.net_balance())
+        print(stats.total_spending)
+        print(stats.net_balance)
         report = stats.summary()
     """
 
