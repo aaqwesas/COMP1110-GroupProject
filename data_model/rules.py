@@ -23,16 +23,16 @@ class RuleOperator(str, Enum):
         }
         return ops[self](a, b)
 
+
 @dataclass(slots=True)
 class BudgetRule(ABC):
-    schema: str
-    period: int
-    operator: RuleOperator
-    threshold: float
     alert: Alert
+    period: int | None = None
+    operator: RuleOperator | None = None
+    threshold: float | None = None
 
     def __post_init__(self) -> None:
-        if self.period <= 0:
+        if self.period is not None and self.period <= 0:
             raise ValueError("Period must be positive")
 
     @abstractmethod
@@ -40,17 +40,22 @@ class BudgetRule(ABC):
         ...
 
     def get_range(self, ref_date: date) -> tuple[date, date]:
+        if self.period is None:
+            raise ValueError("This rule doesn't have a set timeframe.")
         return ref_date - timedelta(days=self.period), ref_date
 
     def to_dict(self) -> dict:
-        return {
+        data = {
             "rule_type": self.__class__.__name__,
-            "schema": self.schema,
-            "period": self.period,
-            "operator": self.operator.value,
-            "threshold": self.threshold,
             "alert_type": self.alert.__class__.__name__
         }
+        if self.period is not None:
+            data["period"] = self.period
+        if self.operator is not None:
+            data["operator"] = self.operator.value
+        if self.threshold is not None:
+            data["threshold"] = self.threshold
+        return data
 
     @classmethod
     def from_dict(cls, data: dict, rule_classes_map: dict, alert_classes_map: dict) -> 'BudgetRule':
@@ -58,13 +63,14 @@ class BudgetRule(ABC):
         alert_cls = alert_classes_map.get(data.get("alert_type"))
 
         if not rule_cls or not alert_cls:
-            raise ValueError(
-                f"Could not resolve rule type ({data.get('rule_type')}) o alerta ({data.get('alert_type')}).")
+            raise ValueError(f"Could not resolve the rule or alert type for {data}.")
 
-        return rule_cls(
-            schema=data["schema"],
-            period=data["period"],
-            operator=RuleOperator(data["operator"]),
-            threshold=data["threshold"],
-            alert=alert_cls()
-        )
+        kwargs = {"alert": alert_cls()}
+        if "period" in data:
+            kwargs["period"] = data["period"]
+        if "operator" in data:
+            kwargs["operator"] = RuleOperator(data["operator"])
+        if "threshold" in data:
+            kwargs["threshold"] = data["threshold"]
+
+        return rule_cls(**kwargs)
