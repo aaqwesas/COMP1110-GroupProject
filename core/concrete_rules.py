@@ -20,7 +20,7 @@ class CategoryBudgetRule(BudgetRule):
 
         total_with_current = period_total + transaction.amount
 
-        if self.operator(total_with_current, self.threshold):
+        if self.operator.evaluate(total_with_current, self.threshold):
             self.alert(
                 message = f"You have exceeded your overall budget from the last {self.period} days!"
                 f"Limit: {self.threshold:.2f}, Accumulated: {total_with_current:.2f}"
@@ -35,7 +35,7 @@ class SingleTransactionRule(BudgetRule):
         if not isinstance(transaction, Expense):
             return False
 
-        if self.operator(transaction.amount, self.threshold):
+        if self.operator.evaluate(transaction.amount, self.threshold):
             self.alert(
                 message = f"Large transaction alert! A single expense of ${transaction.amount:.2f}"
                           f"exceeded the limit of {self.threshold:.2f}"
@@ -68,7 +68,7 @@ class PercentageThresholdRule(BudgetRule):
 
         ratio = category_total / overall_total
 
-        if self.operator(ratio, self.threshold):
+        if self.operator.evaluate(ratio, self.threshold):
             self.alert(
                 message=f"Percentage threshold alert! Expenses in {transaction.category.name}"
                         f"now make up {ratio:.1%} of your spending in the last {self.period} days"
@@ -111,7 +111,7 @@ class ConsecutiveOverspendRule(BudgetRule):
         consecutive_overspend = True
         for i in range(num_days):
             check_date = start_date + timedelta(days=i)
-            if not self.operator(daily_totals[check_date], self.threshold):
+            if not self.operator.evaluate(daily_totals[check_date], self.threshold):
                 consecutive_overspend = False
                 break
 
