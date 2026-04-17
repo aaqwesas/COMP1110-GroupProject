@@ -21,10 +21,10 @@ class CategoryBudgetRule(BudgetRule):
         total_with_current = period_total + transaction.amount
 
         if self.operator.evaluate(total_with_current, self.threshold):
-            self.alert(
-                message = f"You have exceeded your overall budget from the last {self.period} days!"
-                f"Limit: {self.threshold:.2f}, Accumulated: {total_with_current:.2f}"
-                f"(includes the new transaction of ${transaction.amount:.2f})."
+            self.alert.send(
+                message=f"You have exceeded your overall budget from the last {self.period} days! "
+                        f"Limit: {self.threshold:.2f}, Accumulated: {total_with_current:.2f} "
+                        f"(includes the new transaction of ${transaction.amount:.2f})."
             )
             return True
         return False
@@ -36,10 +36,10 @@ class SingleTransactionRule(BudgetRule):
             return False
 
         if self.operator.evaluate(transaction.amount, self.threshold):
-            self.alert(
-                message = f"Large transaction alert! A single expense of ${transaction.amount:.2f}"
-                          f"exceeded the limit of {self.threshold:.2f}"
-                          f"(Description: {transaction.description})."
+            self.alert.send(
+                message=f"Large transaction alert! A single expense of ${transaction.amount:.2f} "
+                        f"exceeded the limit of {self.threshold:.2f} "
+                        f"(Description: {transaction.description})."
             )
             return True
         return False
@@ -69,9 +69,9 @@ class PercentageThresholdRule(BudgetRule):
         ratio = category_total / overall_total
 
         if self.operator.evaluate(ratio, self.threshold):
-            self.alert(
-                message=f"Percentage threshold alert! Expenses in {transaction.category.name}"
-                        f"now make up {ratio:.1%} of your spending in the last {self.period} days"
+            self.alert.send(
+                message=f"Percentage threshold alert! Expenses in {transaction.category.name} "
+                        f"now make up {ratio:.1%} of your spending in the last {self.period} days "
                         f"(threshold: {self.threshold:.1%})."
             )
             return True
@@ -84,7 +84,7 @@ class UncategorizedWarningRule(BudgetRule):
             return False
 
         if transaction.category.name == "UNCATEGORIZED":
-            self.alert(
+            self.alert.send(
                 message=f"Uncategorized expense warning! You recorded an expense of ${transaction.amount:.2f} "
                         f"without assigning a proper category."
             )
@@ -116,7 +116,7 @@ class ConsecutiveOverspendRule(BudgetRule):
                 break
 
         if consecutive_overspend:
-            self.alert(
+            self.alert.send(
                 message=f"Consecutive overspend alert! You have exceeded the daily limit of ${self.threshold:.2f} "
                         f"for {num_days} consecutive days."
             )
