@@ -1,0 +1,64 @@
+{"id": "e001", "date": "2026-04-01", "amount": 32.0, "category": "FOOD", "description": "Breakfast"}
+{"id": "e002", "date": "2026-04-01", "amount": 12.0, "category": "TRAFFIC", "description": "MTR fare"}
+{"id": "e003", "date": "2026-04-01", "amount": 58.0, "category": "SUBSCRIPTION", "description": "Spotify"}
+{"id": "e004", "date": "2026-04-02", "amount": 38.0, "category": "FOOD", "description": "Lunch"}
+{"id": "e005", "date": "2026-04-02", "amount": 22.0, "category": "DRINKS", "description": "Milk tea"}
+{"id": "e006", "date": "2026-04-03", "amount": 29.0, "category": "FOOD", "description": "Dinner"}
+{"id": "e007", "date": "2026-04-03", "amount": 14.0, "category": "TRAFFIC", "description": "Taxi fare"}
+{"id": "e008", "date": "2026-04-03", "amount": 85.0, "category": "MEDICAL", "description": "Clinic visit"}
+{"id": "e064", "date": "2026-04-03", "amount": 2400.0, "category": "RENT", "description": "Monthly rent"}
+{"id": "e009", "date": "2026-04-04", "amount": 41.0, "category": "FOOD", "description": "Groceries"}
+{"id": "e010", "date": "2026-04-05", "amount": 35.0, "category": "FOOD", "description": "Snack"}
+{"id": "e011", "date": "2026-04-05", "amount": 10.0, "category": "TRAFFIC", "description": "Bus fare"}
+{"id": "e012", "date": "2026-04-05", "amount": 88.0, "category": "ENTERTAINMENT", "description": "Movie"}
+{"id": "e013", "date": "2026-04-06", "amount": 44.0, "category": "FOOD", "description": "Breakfast"}
+{"id": "e014", "date": "2026-04-06", "amount": 22.0, "category": "DRINKS", "description": "Milk tea"}
+{"id": "e015", "date": "2026-04-07", "amount": 27.0, "category": "FOOD", "description": "Lunch"}
+{"id": "e016", "date": "2026-04-07", "amount": 9.0, "category": "TRAFFIC", "description": "MTR fare"}
+{"id": "e017", "date": "2026-04-07", "amount": 35.0, "category": "EDUCATION", "description": "Stationery"}
+{"id": "e018", "date": "2026-04-08", "amount": 32.0, "category": "FOOD", "description": "Dinner"}
+{"id": "e019", "date": "2026-04-09", "amount": 38.0, "category": "FOOD", "description": "Groceries"}
+{"id": "e020", "date": "2026-04-09", "amount": 11.0, "category": "TRAFFIC", "description": "Taxi fare"}
+{"id": "e021", "date": "2026-04-10", "amount": 29.0, "category": "FOOD", "description": "Snack"}
+{"id": "e022", "date": "2026-04-10", "amount": 22.0, "category": "DRINKS", "description": "Milk tea"}
+{"id": "e023", "date": "2026-04-11", "amount": 41.0, "category": "FOOD", "description": "Breakfast"}
+{"id": "e024", "date": "2026-04-11", "amount": 12.0, "category": "TRAFFIC", "description": "Bus fare"}
+{"id": "e025", "date": "2026-04-12", "amount": 35.0, "category": "FOOD", "description": "Lunch"}
+{"id": "e026", "date": "2026-04-12", "amount": 120.0, "category": "ENTERTAINMENT", "description": "Game top-up"}
+{"id": "e027", "date": "2026-04-13", "amount": 44.0, "category": "FOOD", "description": "Dinner"}
+{"id": "e028", "date": "2026-04-13", "amount": 14.0, "category": "TRAFFIC", "description": "MTR fare"}
+{"id": "e029", "date": "2026-04-14", "amount": 27.0, "category": "FOOD", "description": "Groceries"}
+{"id": "e030", "date": "2026-04-14", "amount": 22.0, "category": "DRINKS", "description": "Milk tea"}
+{"id": "e031", "date": "2026-04-15", "amount": 32.0, "category": "FOOD", "description": "Snack"}
+{"id": "e032", "date": "2026-04-15", "amount": 10.0, "category": "TRAFFIC", "description": "Taxi fare"}
+{"id": "e033", "date": "2026-04-15", "amount": 68.0, "category": "SUBSCRIPTION", "description": "YouTube Premium"}
+{"id": "e034", "date": "2026-04-16", "amount": 38.0, "category": "FOOD", "description": "Breakfast"}
+{"id": "e035", "date": "2026-04-17", "amount": 29.0, "category": "FOOD", "description": "Lunch"}
+{"id": "e036", "date": "2026-04-17", "amount": 9.0, "category": "TRAFFIC", "description": "Bus fare"}
+{"id": "e037", "date": "2026-04-17", "amount": 42.0, "category": "MEDICAL", "description": "Medicine"}
+{"id": "e038", "date": "2026-04-18", "amount": 41.0, "category": "FOOD", "description": "Dinner"}
+{"id": "e039", "date": "2026-04-18", "amount": 22.0, "category": "DRINKS", "description": "Milk tea"}
+{"id": "e040", "date": "2026-04-19", "amount": 35.0, "category": "FOOD", "description": "Groceries"}
+{"id": "e041", "date": "2026-04-19", "amount": 11.0, "category": "TRAFFIC", "description": "MTR fare"}
+{"id": "e042", "date": "2026-04-19", "amount": 76.0, "category": "ENTERTAINMENT", "description": "Karaoke"}
+{"id": "e043", "date": "2026-04-20", "amount": 44.0, "category": "FOOD", "description": "Snack"}
+{"id": "e044", "date": "2026-04-21", "amount": 27.0, "category": "FOOD", "description": "Breakfast"}
+{"id": "e045", "date": "2026-04-21", "amount": 12.0, "category": "TRAFFIC", "description": "Taxi fare"}
+{"id": "e046", "date": "2026-04-21", "amount": 55.0, "category": "EDUCATION", "description": "Printing"}
+{"id": "e047", "date": "2026-04-22", "amount": 32.0, "category": "FOOD", "description": "Lunch"}
+{"id": "e048", "date": "2026-04-22", "amount": 22.0, "category": "DRINKS", "description": "Milk tea"}
+{"id": "e049", "date": "2026-04-23", "amount": 38.0, "category": "FOOD", "description": "Dinner"}
+{"id": "e050", "date": "2026-04-23", "amount": 14.0, "category": "TRAFFIC", "description": "Bus fare"}
+{"id": "e051", "date": "2026-04-24", "amount": 29.0, "category": "FOOD", "description": "Groceries"}
+{"id": "e052", "date": "2026-04-25", "amount": 41.0, "category": "FOOD", "description": "Snack"}
+{"id": "e053", "date": "2026-04-25", "amount": 10.0, "category": "TRAFFIC", "description": "MTR fare"}
+{"id": "e054", "date": "2026-04-26", "amount": 35.0, "category": "FOOD", "description": "Breakfast"}
+{"id": "e055", "date": "2026-04-26", "amount": 22.0, "category": "DRINKS", "description": "Milk tea"}
+{"id": "e056", "date": "2026-04-26", "amount": 95.0, "category": "ENTERTAINMENT", "description": "Concert"}
+{"id": "e057", "date": "2026-04-27", "amount": 44.0, "category": "FOOD", "description": "Lunch"}
+{"id": "e058", "date": "2026-04-27", "amount": 9.0, "category": "TRAFFIC", "description": "Taxi fare"}
+{"id": "e059", "date": "2026-04-28", "amount": 27.0, "category": "FOOD", "description": "Dinner"}
+{"id": "e060", "date": "2026-04-29", "amount": 32.0, "category": "FOOD", "description": "Groceries"}
+{"id": "e061", "date": "2026-04-29", "amount": 11.0, "category": "TRAFFIC", "description": "Bus fare"}
+{"id": "e062", "date": "2026-04-30", "amount": 38.0, "category": "FOOD", "description": "Snack"}
+{"id": "e063", "date": "2026-04-30", "amount": 22.0, "category": "DRINKS", "description": "Milk tea"}

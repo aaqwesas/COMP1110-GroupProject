@@ -1,0 +1,7 @@
+{"id": "e001", "date": "2026-04-10", "amount": 35.0, "category": "FOOD", "description": "Breakfast"}
+{"id": "e002", "date": "2026-04-11", "amount": 45.0, "category": "FOOD", "description": "Lunch"}
+{"id": "e003", "date": "2026-04-12", "amount": 58.0, "category": "FOOD", "description": "Dinner"}
+{"id": "e004", "date": "2026-04-13", "amount": 42.0, "category": "TRAFFIC", "description": "MTR fare"}
+{"id": "e005", "date": "2026-04-14", "amount": 65.0, "category": "FOOD", "description": "Groceries"}
+{"id": "e006", "date": "2026-04-15", "amount": 28.0, "category": "DRINKS", "description": "Coffee"}
+{"id": "e007", "date": "2026-04-16", "amount": 55.0, "category": "FOOD", "description": "Dinner"}
