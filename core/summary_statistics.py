@@ -4,6 +4,7 @@ daily/weekly/monthly aggregations, and simple trend comparisons.
 """
 
 from collections import defaultdict
+from collections.abc import Sequence
 from datetime import date, timedelta
 from functools import cached_property
 from typing import TypedDict
@@ -48,7 +49,7 @@ class SummaryStatistics:
         report = stats.summary()
     """
 
-    def __init__(self, transactions: list[Transaction]) -> None:
+    def __init__(self, transactions: Sequence[Transaction]) -> None:
         self._transactions = transactions
         # split once up front so we don't isinstance-check on every method call
         self._expenses: list[Expense] = [
