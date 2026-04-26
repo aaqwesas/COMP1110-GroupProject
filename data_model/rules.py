@@ -6,6 +6,7 @@ import operator
 from data_model.alerts import Alert
 from .schemas import Transaction
 
+
 class RuleOperator(str, Enum):
     GT = ">"
     LT = "<"
@@ -36,8 +37,9 @@ class BudgetRule(ABC):
             raise ValueError("Period must be positive")
 
     @abstractmethod
-    def evaluate(self, transaction: Transaction, history: list[Transaction]) -> bool:
-        ...
+    def evaluate(
+        self, transaction: Transaction, history: list[Transaction]
+    ) -> bool: ...
 
     def __str__(self) -> str:
         return self.__class__.__name__
@@ -48,20 +50,18 @@ class BudgetRule(ABC):
         return ref_date - timedelta(days=self.period), ref_date
 
     def to_dict(self) -> dict:
-        data = {
+        return {
             "rule_type": str(self),
-            "alert_type": str(self.alert)
+            "alert_type": str(self.alert),
+            "period": self.period,
+            "operator": self.operator.value,
+            "threshold": self.threshold,
         }
-        if self.period is not None:
-            data["period"] = self.period
-        if self.operator is not None:
-            data["operator"] = self.operator.value
-        if self.threshold is not None:
-            data["threshold"] = self.threshold
-        return data
 
     @classmethod
-    def from_dict(cls, data: dict, rule_classes_map: dict, alert_classes_map: dict) -> 'BudgetRule':
+    def from_dict(
+        cls, data: dict, rule_classes_map: dict, alert_classes_map: dict
+    ) -> "BudgetRule":
         rule_cls = rule_classes_map.get(data.get("rule_type"))
         alert_cls = alert_classes_map.get(data.get("alert_type"))
 

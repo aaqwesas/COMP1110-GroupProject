@@ -1,5 +1,10 @@
 from pathlib import Path
 from data_model.alerts import Alert
+import logging
+
+from tools.formatter import set_logger
+
+logger = set_logger(logging.DEBUG)
 
 
 class ConsoleAlert(Alert):
@@ -7,7 +12,7 @@ class ConsoleAlert(Alert):
         self.message_template = message_template
 
     def send(self, message: str) -> None:
-        print(self.message_template.format(message=message))
+        logger.warning(self.message_template.format(message=message))
 
 
 class FileAlert(Alert):
@@ -18,6 +23,7 @@ class FileAlert(Alert):
     def send(self, message: str) -> None:
         with open(file=self.filepath, mode="a") as f:
             f.write(f"ALERT: {message}\n")
+
 
 class JSONFileAlert(Alert):
     def __init__(self, filepath: str = "logs/alerts.jsonl"):
