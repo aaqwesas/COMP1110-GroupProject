@@ -11,6 +11,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 
 from data_model.schemas import Expense, Income
 from data_model.categories import ExpenseCategory, IncomeCategory
+from data_model.rules import RuleOperator
 from core.summary_statistics import SummaryStatistics
 from core.rule_manager import RuleManager
 from core.concrete_rules import (
@@ -471,9 +472,6 @@ class BudgetMenu:
             description="dummy",
         )
 
-        def greater_than(x: float, y: float) -> bool:
-            return x > y
-
         rule = UncategorizedWarningRule(
             schema=dummy_expense,
             period=1,
@@ -501,9 +499,6 @@ class BudgetMenu:
             category=ExpenseCategory.UNCATEGORIZED,
             description="dummy",
         )
-
-        def greater_than(x: float, y: float) -> bool:
-            return x > y
 
         rule = ConsecutiveOverspendRule(
             schema=dummy_expense,
@@ -569,7 +564,7 @@ class BudgetMenu:
             except ValueError:
                 print("Enter a valid number")
 
-    def _get_operator_input(self) -> Callable[[float, float], bool]:
+    def _get_operator_input(self) -> RuleOperator:
         """Get comparison operator from user"""
         print("\nOperators:")
         print("1. Greater than (>)")
