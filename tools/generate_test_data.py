@@ -168,6 +168,21 @@ def case_uncategorized() -> list[dict]:
         expense("e003", "2026-04-07", 20.0, "UNCATEGORIZED", "Unknown purchase"),
     ]
 
+def case_zero_spending() -> list[dict]:
+    return [
+        expense("e001", "2026-04-10", 0.0, "FOOD", "Free sample"),
+        expense("e002", "2026-04-11", 0.0, "TRAFFIC", "Free shuttle bus"),
+        expense("e003", "2026-04-12", 0.0, "ENTERTAINMENT", "Free outdoor concert"),
+    ]
+
+def case_all_uncategorized() -> list[dict]:
+    return [
+        expense("e001", "2026-04-15", 45.0, "UNCATEGORIZED", "Unknown expense 1"),
+        expense("e002", "2026-04-16", 110.0, "UNCATEGORIZED", "Unknown expense 2"),
+        expense("e003", "2026-04-17", 12.0, "UNCATEGORIZED", "Unknown expense 3"),
+        expense("e004", "2026-04-18", 250.0, "UNCATEGORIZED", "Unknown expense 4"),
+    ]
+
 def invalid_date_case() -> list[dict]:
     return [
         expense("e001", "04/10/2026", 40.0, "FOOD", "Lunch"),
@@ -201,6 +216,8 @@ def build_datasets() -> dict[str, list[dict]]:
         "case_percentage_threshold.jsonl": case_percentage_threshold(),
         "case_consecutive_overspend.jsonl": case_consecutive_overspend(),
         "case_uncategorized.jsonl": case_uncategorized(),
+        "case_zero_spending.jsonl": case_zero_spending(),
+        "case_all_uncategorized.jsonl": case_all_uncategorized(),
         "invalid_date.jsonl": invalid_date_case(),
         "invalid_amount.jsonl": invalid_amount_case(),
         "missing_field.jsonl": missing_field_case(),
