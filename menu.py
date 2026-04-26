@@ -269,30 +269,72 @@ class BudgetMenu:
         print(f"\nIncome added: +${amount:.2f} | {category.name}")
 
     def _view_transactions(self):
-        """View all transactions"""
+        """View all transactions or filter them by date/category"""
         if not self.expenses and not self.incomes:
             print("\nNo transactions yet.")
             return
 
+        print("\n" + "-" * 40)
+        print("VIEW TRANSACTIONS")
+        print("-" * 40)
+        print("1. View All")
+        print("2. Filter by Date")
+        print("3. Filter by Category")
+
+        choice = input("\nChoose filter option: ").strip()
+
+        filtered_expenses = self.expenses
+        filtered_incomes = self.incomes
+
+        if choice == "2":
+            start_str = input("Start Date (YYYY-MM-DD) [Leave blank for no start]: ").strip()
+            end_str = input("End Date (YYYY-MM-DD) [Leave blank for no end]: ").strip()
+
+            try:
+                if start_str:
+                    start_date = date.fromisoformat(start_str)
+                    filtered_expenses = [e for e in filtered_expenses if e.date >= start_date]
+                    filtered_incomes = [i for i in filtered_incomes if i.date >= start_date]
+            except ValueError:
+                print("Invalid start date. Ignoring start limit.")
+
+            try:
+                if end_str:
+                    end_date = date.fromisoformat(end_str)
+                    filtered_expenses = [e for e in filtered_expenses if e.date <= end_date]
+                    filtered_incomes = [i for i in filtered_incomes if i.date <= end_date]
+            except ValueError:
+                print("Invalid end date. Ignoring end limit.")
+
+        elif choice == "3":
+            cat_str = input("Enter category name (e.g., FOOD, SALARY, RENT): ").strip().upper()
+            filtered_expenses = [e for e in filtered_expenses if e.category.name == cat_str]
+            filtered_incomes = [i for i in filtered_incomes if i.category.name == cat_str]
+
+        elif choice != "1":
+            print("Invalid choice. Displaying all transactions.")
+
+        self._print_transaction_list(filtered_expenses, filtered_incomes)
+
+    def _print_transaction_list(self, expenses, incomes):
+        """Helper to print a list of transactions to the console"""
+        if not expenses and not incomes:
+            print("\nNo transactions found matching your criteria.")
+            return
+
         print("\n" + "-" * 70)
-        print(
-            f"{'Type':<8} {'Date':<12} {'Amount':<10} {'Category':<15} {'Description'}"
-        )
+        print(f"{'Type':<8} {'Date':<12} {'Amount':<10} {'Category':<15} {'Description'}")
         print("-" * 70)
 
-        for e in self.expenses[-20:]:
-            print(
-                f"{'Expense':<8} {e.date}  -${e.amount:<9.2f} {e.category.name:<15} {e.description[:30]}"
-            )
+        for e in expenses:
+            print(f"{'Expense':<8} {e.date}  -${e.amount:<9.2f} {e.category.name:<15} {e.description[:30]}")
 
-        for i in self.incomes[-10:]:
-            print(
-                f"{'Income':<8} {i.date}  +${i.amount:<9.2f} {i.category.name:<15} {i.description[:30]}"
-            )
+        for i in incomes:
+            print(f"{'Income':<8} {i.date}  +${i.amount:<9.2f} {i.category.name:<15} {i.description[:30]}")
 
         print("-" * 70)
-        total_expense = sum(e.amount for e in self.expenses)
-        total_income = sum(i.amount for i in self.incomes)
+        total_expense = sum(e.amount for e in expenses)
+        total_income = sum(i.amount for i in incomes)
         print(f"Total Expenses: ${total_expense:.2f}")
         print(f"Total Income: ${total_income:.2f}")
         print(f"Net Balance: ${total_income - total_expense:.2f}")
