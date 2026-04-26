@@ -247,9 +247,9 @@ class BudgetMenu:
             print(f"   - {cat.name}")
 
         category_str = input("Category: ").strip().upper()
-        try:
+        if category_str in IncomeCategory.__members__:
             category = IncomeCategory[category_str]
-        except KeyError:
+        else:
             print(f"Unknown category, using {IncomeCategory.UNCATEGORIZED.name}")
             category = IncomeCategory.UNCATEGORIZED
 
@@ -287,24 +287,35 @@ class BudgetMenu:
         filtered_incomes = self.incomes
 
         if choice == "2":
-            start_str = input("Start Date (YYYY-MM-DD) [Leave blank for no start]: ").strip()
-            end_str = input("End Date (YYYY-MM-DD) [Leave blank for no end]: ").strip()
-
-            try:
-                if start_str:
+            start_date = None
+            while True:
+                start_str = input("Start Date (YYYY-MM-DD) [Leave blank for no start]: ").strip()
+                if not start_str:
+                    break
+                try:
                     start_date = date.fromisoformat(start_str)
-                    filtered_expenses = [e for e in filtered_expenses if e.date >= start_date]
-                    filtered_incomes = [i for i in filtered_incomes if i.date >= start_date]
-            except ValueError:
-                print("Invalid start date. Ignoring start limit.")
+                    break
+                except ValueError:
+                    print("Invalid date format. Please use YYYY-MM-DD or leave blank.")
 
-            try:
-                if end_str:
+            end_date = None
+            while True:
+                end_str = input("End Date (YYYY-MM-DD) [Leave blank for no end]: ").strip()
+                if not end_str:
+                    break
+                try:
                     end_date = date.fromisoformat(end_str)
-                    filtered_expenses = [e for e in filtered_expenses if e.date <= end_date]
-                    filtered_incomes = [i for i in filtered_incomes if i.date <= end_date]
-            except ValueError:
-                print("Invalid end date. Ignoring end limit.")
+                    break
+                except ValueError:
+                    print("Invalid date format. Please use YYYY-MM-DD or leave blank.")
+
+            if start_date:
+                filtered_expenses = [e for e in filtered_expenses if e.date >= start_date]
+                filtered_incomes = [i for i in filtered_incomes if i.date >= start_date]
+
+            if end_date:
+                filtered_expenses = [e for e in filtered_expenses if e.date <= end_date]
+                filtered_incomes = [i for i in filtered_incomes if i.date <= end_date]
 
         elif choice == "3":
             cat_str = input("Enter category name (e.g., FOOD, SALARY, RENT): ").strip().upper()
@@ -544,7 +555,7 @@ class BudgetMenu:
 
         rule = UncategorizedWarningRule(
             period=1,
-            operator=greater_than,
+            operator=RuleOperator.GT,
             threshold=0,
             alert=alert,
         )
@@ -563,7 +574,7 @@ class BudgetMenu:
 
         rule = ConsecutiveOverspendRule(
             period=period,
-            operator=greater_than,
+            operator=RuleOperator.GT,
             threshold=threshold,
             alert=alert,
         )
@@ -632,9 +643,9 @@ class BudgetMenu:
 
         choice = input("Choose operator: ").strip()
         if choice == "1":
-            return operator.gt
+            return RuleOperator.GT
         else:
-            return operator.ge
+            return RuleOperator.GTE
 
     def _get_alert_type(self):
         """Get alert type from user"""
