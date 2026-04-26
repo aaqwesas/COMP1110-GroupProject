@@ -6,12 +6,13 @@ from datetime import date, datetime, timedelta
 from pathlib import Path
 from collections.abc import Callable
 import operator
+import json
 
 sys.path.insert(0, str(Path(__file__).parent))
 
 from data_model.schemas import Expense, Income
 from data_model.categories import ExpenseCategory, IncomeCategory
-from data_model.rules import RuleOperator
+from data_model.rules import RuleOperator, BudgetRule
 from core.summary_statistics import SummaryStatistics
 from core.rule_manager import RuleManager
 from core.concrete_rules import (
@@ -36,6 +37,7 @@ class BudgetMenu:
         self.incomes: list[Income] = []
         self.rule_manager = RuleManager()
         self.transactions_file = Path("data/transactions.jsonl")
+        self.incomes_file = Path("data/incomes.jsonl")
         self.rules_file = Path("data/rules.json")
         self.transactions_file.parent.mkdir(parents=True, exist_ok=True)
 
@@ -93,14 +95,54 @@ class BudgetMenu:
         print("-" * 40)
 
     def _load_data(self):
-        """Load transactions from JSONL file"""
+        """Load transactions and rules from files"""
+        # 1. Load Expenses
         try:
-            if self.transactions_file.exists():
+            if getattr(self, "transactions_file", None) and self.transactions_file.exists():
                 parser = ExpenseParser(self.transactions_file)
                 self.expenses = list(parser.parse())
                 print(f"Loaded {len(self.expenses)} expenses")
         except Exception as e:
-            print(f"Could not load data: {e}")
+            print(f"Could not load expense data: {e}")
+
+        # 2. Load Incomes
+        try:
+            if getattr(self, "incomes_file", None) and self.incomes_file.exists():
+                parser = IncomeParser(self.incomes_file)
+                self.incomes = list(parser.parse())
+                print(f"Loaded {len(self.incomes)} incomes")
+        except Exception as e:
+            print(f"Could not load income data: {e}")
+
+        # 3. Load Rules
+        try:
+            if getattr(self, "rules_file", None) and self.rules_file.exists():
+                with open(self.rules_file, "r", encoding="utf-8") as rf:
+                    rule_dicts = json.load(rf)
+
+                rule_classes_map = {
+                    "CategoryBudgetRule": CategoryBudgetRule,
+                    "SingleTransactionRule": SingleTransactionRule,
+                    "PercentageThresholdRule": PercentageThresholdRule,
+                    "UncategorizedWarningRule": UncategorizedWarningRule,
+                    "ConsecutiveOverspendRule": ConsecutiveOverspendRule
+                }
+
+                alert_classes_map = {
+                    "ConsoleAlert": ConsoleAlert,
+                    "FileAlert": FileAlert
+                }
+
+                for r_data in rule_dicts:
+                    rule = BudgetRule.from_dict(
+                        r_data,
+                        rule_classes_map=rule_classes_map,
+                        alert_classes_map=alert_classes_map
+                    )
+                    self.rule_manager.add_rule(rule)
+                print(f"Loaded {len(self.rule_manager.rules)} active rules")
+        except Exception as e:
+            print(f"Could not load rules data: {e}")
 
     def _save_data(self):
         """Save transactions to JSONL file"""
@@ -109,6 +151,13 @@ class BudgetMenu:
 
             if self.expenses:
                 output_parser(self.transactions_file, self.expenses)
+
+            if self.incomes:
+                output_parser(self.incomes_file, self.incomes)
+
+            rule_dicts = [rule.to_dict() for rule in self.rule_manager.rules]
+            with open(self.rules_file, "w", encoding="utf-8") as rf:
+                json.dump(rule_dicts, rf, indent=4)
 
             print(f"Saved {len(self.expenses)} expenses")
             print(f"Saved {len(self.incomes)} incomes")
