@@ -31,7 +31,8 @@ class SummaryReport(TypedDict):
     avg_daily_spending_30d: float
     spending_change_7d_pct: float | None
     spending_change_30d_pct: float | None
-
+    weekly_spending: dict[tuple[int, int], float]
+    monthly_spending: dict[tuple[int, int], float]
 
 class SummaryStatistics:
     """Takes a mixed list of Expense/Income transactions and exposes
@@ -267,6 +268,8 @@ class SummaryStatistics:
             avg_daily_spending_30d=self.average_daily_spending(30, ref),
             spending_change_7d_pct=self.spending_change(7, ref),
             spending_change_30d_pct=self.spending_change(30, ref),
+            weekly_spending=self.weekly_spending(),
+            monthly_spending=self.monthly_spending(),
         )
 
     # Private Helpers

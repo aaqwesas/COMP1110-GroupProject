@@ -384,6 +384,20 @@ class BudgetMenu:
             else:
                 print(f"   No change vs previous 7 days")
 
+        print("\nTime-based Totals (Recent):")
+
+        if report.get("weekly_spending"):
+            print("   Weekly Spending:")
+            sorted_weeks = sorted(report["weekly_spending"].items(), reverse=True)[:4]
+            for (year, week), amt in sorted_weeks:
+                print(f"      Week {week}, {year}: ${amt:.2f}")
+
+        if report.get("monthly_spending"):
+            print("   Monthly Spending:")
+            sorted_months = sorted(report["monthly_spending"].items(), reverse=True)[:4]
+            for (year, month), amt in sorted_months:
+                print(f"      {year}-{month:02d}: ${amt:.2f}")
+
     def _check_alerts(self):
         """Check all budget rules"""
         if not self.rule_manager.rules:
