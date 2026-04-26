@@ -6,8 +6,14 @@ class RuleManager:
     def __init__(self):
         self.rules: list[BudgetRule] = []
 
-    def add_rule(self, rule: BudgetRule):
-        self.rules.append(rule)
+    def add_rule(self, rule: BudgetRule) -> bool:
+        try:
+            rule.validate()
+            self.rules.append(rule)
+            return True
+        except ValueError as e:
+            print(f"Warning: Rejected invalid rule configuration '{rule.__class__.__name__}': {e}")
+            return False
 
     def process_transaction(self, transaction: Transaction, history: list[Transaction]):
         periods = [rule.period for rule in self.rules if rule.period is not None]

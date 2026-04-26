@@ -32,6 +32,10 @@ class CategoryBudgetRule(BudgetRule):
 
 @dataclass(slots=True)
 class SingleTransactionRule(BudgetRule):
+    def validate(self) -> None:
+        if self.threshold <= 0:
+            raise ValueError("Single transaction thresholds must be strictly greater than 0.")
+
     def evaluate(self, transaction: Transaction, history: list[Transaction]) -> bool:
         if not isinstance(transaction, Expense):
             return False
@@ -47,6 +51,12 @@ class SingleTransactionRule(BudgetRule):
 
 @dataclass(slots=True)
 class PercentageThresholdRule(BudgetRule):
+    def validate(self) -> None:
+        if not (0.0 < self.threshold <= 1.0):
+            raise ValueError(f"Percentage threshold must be between 0.0 and 1.0, got {self.threshold}")
+        if self.period <= 0:
+            raise ValueError("Percentage rules require a valid timeframe (period > 0).")
+
     def evaluate(self, transaction: Transaction, history: list[Transaction]) -> bool:
         if not isinstance(transaction, Expense):
             return False

@@ -34,7 +34,14 @@ class BudgetRule(ABC):
 
     def __post_init__(self) -> None:
         if self.period is not None and self.period <= 0:
-            raise ValueError("Period must be positive")
+            raise ValueError("Period must be positive (greater than 0).")
+        if self.threshold is not None and self.threshold < 0:
+            raise ValueError("Threshold cannot be a negative number.")
+
+        self.validate()
+
+    def validate(self) -> None:
+        pass
 
     @abstractmethod
     def evaluate(
