@@ -381,16 +381,7 @@ class BudgetMenu:
 
         alert = self._get_alert_type()
 
-        dummy_expense = Expense(
-            id="dummy",
-            date=date.today(),
-            amount=0,
-            category=ExpenseCategory.UNCATEGORIZED,
-            description="dummy",
-        )
-
         rule = CategoryBudgetRule(
-            schema=dummy_expense,
             period=period,
             operator=operator,
             threshold=threshold,
@@ -409,16 +400,7 @@ class BudgetMenu:
         operator = self._get_operator_input()
         alert = self._get_alert_type()
 
-        dummy_expense = Expense(
-            id="dummy",
-            date=date.today(),
-            amount=0,
-            category=ExpenseCategory.UNCATEGORIZED,
-            description="dummy",
-        )
-
         rule = SingleTransactionRule(
-            schema=dummy_expense,
             period=1,
             operator=operator,
             threshold=threshold,
@@ -438,16 +420,7 @@ class BudgetMenu:
         operator = self._get_operator_input()
         alert = self._get_alert_type()
 
-        dummy_expense = Expense(
-            id="dummy",
-            date=date.today(),
-            amount=0,
-            category=ExpenseCategory.UNCATEGORIZED,
-            description="dummy",
-        )
-
         rule = PercentageThresholdRule(
-            schema=dummy_expense,
             period=period,
             operator=operator,
             threshold=threshold,
@@ -464,16 +437,7 @@ class BudgetMenu:
 
         alert = self._get_alert_type()
 
-        dummy_expense = Expense(
-            id="dummy",
-            date=date.today(),
-            amount=0,
-            category=ExpenseCategory.UNCATEGORIZED,
-            description="dummy",
-        )
-
         rule = UncategorizedWarningRule(
-            schema=dummy_expense,
             period=1,
             operator=greater_than,
             threshold=0,
@@ -492,16 +456,7 @@ class BudgetMenu:
         period = self._get_period_input()
         alert = self._get_alert_type()
 
-        dummy_expense = Expense(
-            id="dummy",
-            date=date.today(),
-            amount=0,
-            category=ExpenseCategory.UNCATEGORIZED,
-            description="dummy",
-        )
-
         rule = ConsecutiveOverspendRule(
-            schema=dummy_expense,
             period=period,
             operator=greater_than,
             threshold=threshold,
