@@ -2,10 +2,8 @@
 
 import sys
 import uuid
-from datetime import date, datetime, timedelta
+from datetime import date
 from pathlib import Path
-from collections.abc import Callable
-import operator
 import json
 
 sys.path.insert(0, str(Path(__file__).parent))
@@ -247,9 +245,8 @@ class BudgetMenu:
             print(f"   - {cat.name}")
 
         category_str = input("Category: ").strip().upper()
-        if category_str in IncomeCategory.__members__:
-            category = IncomeCategory[category_str]
-        else:
+        category = getattr(IncomeCategory, category_str, None)
+        if category is None:
             print(f"Unknown category, using {IncomeCategory.UNCATEGORIZED.name}")
             category = IncomeCategory.UNCATEGORIZED
 
