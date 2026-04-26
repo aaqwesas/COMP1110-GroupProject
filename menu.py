@@ -95,52 +95,57 @@ class BudgetMenu:
     def _load_data(self):
         """Load transactions and rules from files"""
         # 1. Load Expenses
-        try:
-            if getattr(self, "transactions_file", None) and self.transactions_file.exists():
-                parser = ExpenseParser(self.transactions_file)
-                self.expenses = list(parser.parse())
+        if getattr(self, "transactions_file", None):
+            parser = ExpenseParser(self.transactions_file)
+            self.expenses = list(parser.parse())
+            if self.expenses:
                 print(f"Loaded {len(self.expenses)} expenses")
-        except Exception as e:
-            print(f"Could not load expense data: {e}")
 
         # 2. Load Incomes
-        try:
-            if getattr(self, "incomes_file", None) and self.incomes_file.exists():
-                parser = IncomeParser(self.incomes_file)
-                self.incomes = list(parser.parse())
+        if getattr(self, "incomes_file", None):
+            parser = IncomeParser(self.incomes_file)
+            self.incomes = list(parser.parse())
+            if self.incomes:
                 print(f"Loaded {len(self.incomes)} incomes")
-        except Exception as e:
-            print(f"Could not load income data: {e}")
 
         # 3. Load Rules
-        try:
-            if getattr(self, "rules_file", None) and self.rules_file.exists():
-                with open(self.rules_file, "r", encoding="utf-8") as rf:
-                    rule_dicts = json.load(rf)
+        if getattr(self, "rules_file", None):
+            if not self.rules_file.exists():
+                print("No rules file found. Starting with default/empty rules.")
+            elif self.rules_file.stat().st_size == 0:
+                print("Rules file is empty. Starting with no active rules.")
+            else:
+                try:
+                    with open(self.rules_file, "r", encoding="utf-8") as rf:
+                        rule_dicts = json.load(rf)
 
-                rule_classes_map = {
-                    "CategoryBudgetRule": CategoryBudgetRule,
-                    "SingleTransactionRule": SingleTransactionRule,
-                    "PercentageThresholdRule": PercentageThresholdRule,
-                    "UncategorizedWarningRule": UncategorizedWarningRule,
-                    "ConsecutiveOverspendRule": ConsecutiveOverspendRule
-                }
+                    rule_classes_map = {
+                        "CategoryBudgetRule": CategoryBudgetRule,
+                        "SingleTransactionRule": SingleTransactionRule,
+                        "PercentageThresholdRule": PercentageThresholdRule,
+                        "UncategorizedWarningRule": UncategorizedWarningRule,
+                        "ConsecutiveOverspendRule": ConsecutiveOverspendRule
+                    }
 
-                alert_classes_map = {
-                    "ConsoleAlert": ConsoleAlert,
-                    "FileAlert": FileAlert
-                }
+                    alert_classes_map = {
+                        "ConsoleAlert": ConsoleAlert,
+                        "FileAlert": FileAlert
+                    }
 
-                for r_data in rule_dicts:
-                    rule = BudgetRule.from_dict(
-                        r_data,
-                        rule_classes_map=rule_classes_map,
-                        alert_classes_map=alert_classes_map
-                    )
-                    self.rule_manager.add_rule(rule)
-                print(f"Loaded {len(self.rule_manager.rules)} active rules")
-        except Exception as e:
-            print(f"Could not load rules data: {e}")
+                    for r_data in rule_dicts:
+                        rule = BudgetRule.from_dict(
+                            r_data,
+                            rule_classes_map=rule_classes_map,
+                            alert_classes_map=alert_classes_map
+                        )
+                        self.rule_manager.add_rule(rule)
+                    print(f"Loaded {len(self.rule_manager.rules)} active rules")
+                except json.JSONDecodeError:
+                    print("Error: The budget rules file is malformed or corrupted. Cannot load rules.")
+                except PermissionError:
+                    print(f"Error: Permission denied when trying to read rules file.")
+                except Exception as e:
+                    print(f"Unexpected error loading rules data: {e}")
 
     def _save_data(self):
         """Save transactions to JSONL file"""
