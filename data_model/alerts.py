@@ -7,3 +7,6 @@ class Alert(ABC):
 
     def __call__(self, message: str) -> None:
         self.send(message=message)
+
+    def __str__(self) -> str:
+        return self.__class__.__name__

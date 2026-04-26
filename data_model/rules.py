@@ -27,9 +27,9 @@ class RuleOperator(str, Enum):
 @dataclass(slots=True)
 class BudgetRule(ABC):
     alert: Alert
-    period: int | None = None
-    operator: RuleOperator | None = None
-    threshold: float | None = None
+    period: int
+    operator: RuleOperator
+    threshold: float
 
     def __post_init__(self) -> None:
         if self.period is not None and self.period <= 0:
@@ -39,6 +39,9 @@ class BudgetRule(ABC):
     def evaluate(self, transaction: Transaction, history: list[Transaction]) -> bool:
         ...
 
+    def __str__(self) -> str:
+        return self.__class__.__name__
+
     def get_range(self, ref_date: date) -> tuple[date, date]:
         if self.period is None:
             raise ValueError("This rule doesn't have a set timeframe.")
@@ -46,8 +49,8 @@ class BudgetRule(ABC):
 
     def to_dict(self) -> dict:
         data = {
-            "rule_type": self.__class__.__name__,
-            "alert_type": self.alert.__class__.__name__
+            "rule_type": str(self),
+            "alert_type": str(self.alert)
         }
         if self.period is not None:
             data["period"] = self.period
