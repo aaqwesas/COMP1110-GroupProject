@@ -38,6 +38,10 @@ class BudgetMenu:
         self.incomes_file = Path("data/incomes.jsonl")
         self.rules_file = Path("data/rules.json")
         self.transactions_file.parent.mkdir(parents=True, exist_ok=True)
+        self.transactions_file.touch(exist_ok=True)
+        self.incomes_file.touch(exist_ok=True)
+        if not self.rules_file.exists():
+            self.rules_file.write_text("[]")
 
         self._load_data()
 
