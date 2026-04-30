@@ -32,7 +32,7 @@ The repository is modularized into several key directories:
 
 1. Clone the repository.
    ```bash
-   git clone <repository_url>
+   git clone <https://github.com/aaqwesas/COMP1110-GroupProject.git>
    cd COMP1110-GroupProject
 2. Run the application.
    ```bash
