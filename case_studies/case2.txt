@@ -26,4 +26,4 @@ EDUCATION
 x
 4
 8
-y
+n

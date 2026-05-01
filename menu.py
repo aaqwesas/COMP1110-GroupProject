@@ -11,7 +11,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 from data_model.schemas import Expense, Income
 from data_model.categories import ExpenseCategory, IncomeCategory
 from data_model.rules import RuleOperator, BudgetRule
-from core.summary_statistics import SummaryStatistics
+from core.summary_statistics import SummaryReport, SummaryStatistics
 from core.rule_manager import RuleManager
 from core.concrete_rules import (
     CategoryBudgetRule,
@@ -384,7 +384,7 @@ class BudgetMenu:
 
         all_transactions = self.expenses + self.incomes
         stats = SummaryStatistics(all_transactions)
-        report = stats.summary()
+        report: SummaryReport = stats.summary()
 
         print("\n" + "=" * 50)
         print("SPENDING SUMMARY")
@@ -404,8 +404,23 @@ class BudgetMenu:
             bar = "█" * int(pct / 2)
             print(f"   {cat.name:<15} ${amt:>8.2f}  ({pct:>5.1f}%) {bar}")
 
+        print("\nIncome by Category:")
+        for cat, amt in report["income_by_category"].items():
+            pct = (
+                (amt / report["total_income"] * 100)
+                if report["total_income"] > 0
+                else 0
+            )
+            bar = "█" * int(pct / 2)
+            print(f"   {cat.name:<15} ${amt:>8.2f}  ({pct:>5.1f}%) {bar}")
+
         print("\nTop Spending Categories:")
         for i, (cat, amt) in enumerate(report["top_3_spending_categories"], 1):
+            print(f"   {i}. {cat.name}: ${amt:.2f}")
+
+
+        print("\nTop Income Categories:")
+        for i, (cat, amt) in enumerate(report["top_3_income_categories"], 1):
             print(f"   {i}. {cat.name}: ${amt:.2f}")
 
         print("\nSpending Trends:")

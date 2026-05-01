@@ -1,4 +1,40 @@
-{"id": "905f65aa", "date": "2020-05-01", "amount": 9000.0, "category": "EDUCATION", "description": "x"}
-{"id": "54923201", "date": "2020-05-01", "amount": 1000.0, "category": "RENT", "description": "x"}
-{"id": "9635f9b3", "date": "2020-05-03", "amount": 2000.0, "category": "EDUCATION", "description": "x"}
-{"id": "648748bd", "date": "2025-05-01", "amount": 9000.0, "category": "EDUCATION", "description": "x"}
+{"id": "exp_001", "date": "2020-05-01", "amount": 9000.0, "category": "EDUCATION", "description": "University tuition"}
+{"id": "exp_002", "date": "2020-05-01", "amount": 1000.0, "category": "RENT", "description": "May rent payment"}
+{"id": "exp_003", "date": "2020-05-03", "amount": 2000.0, "category": "TRAFFIC", "description": "Flight tickets"}
+{"id": "exp_004", "date": "2025-05-01", "amount": 1200.0, "category": "RENT", "description": "January rent"}
+{"id": "exp_005", "date": "2020-05-05", "amount": 150.0, "category": "FOOD", "description": "Weekly grocery shopping"}
+{"id": "exp_006", "date": "2020-05-07", "amount": 45.50, "category": "DRINKS", "description": "Starbucks coffee"}
+{"id": "exp_007", "date": "2020-05-10", "amount": 80.0, "category": "SUBSCRIPTION", "description": "Netflix annual plan"}
+{"id": "exp_008", "date": "2020-05-12", "amount": 200.0, "category": "ENTERTAINMENT", "description": "Concert tickets"}
+{"id": "exp_009", "date": "2020-05-15", "amount": 60.0, "category": "MEDICAL", "description": "Prescription medicine"}
+{"id": "exp_010", "date": "2020-05-18", "amount": 500.0, "category": "UNCATEGORIZED", "description": "Miscellaneous items"}
+{"id": "exp_011", "date": "2020-05-20", "amount": 300.0, "category": "TRAFFIC", "description": "Car maintenance"}
+{"id": "exp_012", "date": "2020-05-22", "amount": 25.0, "category": "SUBSCRIPTION", "description": "Spotify monthly"}
+{"id": "exp_013", "date": "2021-06-10", "amount": 850.0, "category": "RENT", "description": "June rent"}
+{"id": "exp_014", "date": "2021-06-15", "amount": 120.0, "category": "FOOD", "description": "Costco grocery run"}
+{"id": "exp_015", "date": "2021-07-20", "amount": 250.0, "category": "DRINKS", "description": "Wine purchase"}
+{"id": "exp_016", "date": "2022-01-05", "amount": 75.0, "category": "ENTERTAINMENT", "description": "Movie theater night"}
+{"id": "exp_017", "date": "2022-03-12", "amount": 40.0, "category": "FOOD", "description": "Restaurant dinner"}
+{"id": "exp_018", "date": "2022-06-25", "amount": 180.0, "category": "MEDICAL", "description": "Dental cleaning"}
+{"id": "exp_019", "date": "2023-02-14", "amount": 35.0, "category": "DRINKS", "description": "Craft beer tasting"}
+{"id": "exp_020", "date": "2023-04-30", "amount": 95.0, "category": "TRAFFIC", "description": "Gas refill"}
+{"id": "exp_021", "date": "2023-08-17", "amount": 450.0, "category": "SUBSCRIPTION", "description": "Gym annual membership"}
+{"id": "exp_022", "date": "2024-01-10", "amount": 15.99, "category": "SUBSCRIPTION", "description": "Apple Music"}
+{"id": "exp_023", "date": "2024-03-22", "amount": 1300.0, "category": "EDUCATION", "description": "Online course"}
+{"id": "exp_024", "date": "2024-05-05", "amount": 65.0, "category": "FOOD", "description": "Farmers market"}
+{"id": "exp_025", "date": "2024-07-11", "amount": 89.99, "category": "ENTERTAINMENT", "description": "Bowling night with friends"}
+{"id": "exp_026", "date": "2024-09-19", "amount": 220.0, "category": "UNCATEGORIZED", "description": "Gift for friend"}
+{"id": "exp_027", "date": "2025-01-03", "amount": 600.0, "category": "RENT", "description": "Security deposit"}
+{"id": "exp_028", "date": "2025-02-28", "amount": 55.0, "category": "DRINKS", "description": "Smoothie shop"}
+{"id": "exp_029", "date": "2025-03-15", "amount": 1200.0, "category": "TRAFFIC", "description": "Train season pass"}
+{"id": "exp_030", "date": "2025-04-20", "amount": 350.0, "category": "ENTERTAINMENT", "description": "Theme park tickets"}
+{"id": "exp_031", "date": "2025-05-25", "amount": 300.0, "category": "MEDICAL", "description": "Physical therapy"}
+{"id": "exp_032", "date": "2025-06-30", "amount": 28.50, "category": "SUBSCRIPTION", "description": "Disney+"}
+{"id": "exp_033", "date": "2020-08-14", "amount": 90.0, "category": "FOOD", "description": "Pizza delivery"}
+{"id": "exp_034", "date": "2025-09-01", "amount": 5000.0, "category": "EDUCATION", "description": "MBA semester tuition"}
+{"id": "exp_035", "date": "2025-10-10", "amount": 32.50, "category": "DRINKS", "description": "Boba tea run"}
+{"id": "exp_036", "date": "2024-11-15", "amount": 12.99, "category": "SUBSCRIPTION", "description": "HBO Max"}
+{"id": "exp_037", "date": "2023-12-01", "amount": 400.0, "category": "ENTERTAINMENT", "description": "Gaming console"}
+{"id": "exp_038", "date": "2022-08-22", "amount": 75.0, "category": "MEDICAL", "description": "Vitamins and supplements"}
+{"id": "exp_039", "date": "2021-11-30", "amount": 160.0, "category": "TRAFFIC", "description": "Uber rides monthly"}
+{"id": "exp_040", "date": "2020-09-10", "amount": 8.50, "category": "FOOD", "description": "Sandwich lunch"}
