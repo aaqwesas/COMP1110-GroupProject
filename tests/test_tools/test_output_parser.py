@@ -22,6 +22,10 @@ class TestOutputParser(unittest.TestCase):
         if self.temp_path.exists():
             self.temp_path.unlink()
 
+    def _read_non_empty_lines(self) -> list[str]:
+    with open(self.temp_path, "r", encoding="utf-8") as f:
+        return [line.strip() for line in f.readlines() if line.strip()]
+
     def test_write_single_income_record(self):
         records = [
             Income(
