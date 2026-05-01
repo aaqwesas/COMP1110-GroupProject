@@ -611,6 +611,7 @@ class TestSummaryReport(unittest.TestCase):
             "last_7_days_spending", "last_30_days_spending",
             "avg_daily_spending_7d", "avg_daily_spending_30d",
             "spending_change_7d_pct", "spending_change_30d_pct",
+            "weekly_spending", "monthly_spending",
         }
         self.assertEqual(set(self.stats.summary(ref_date=self.ref).keys()), expected)
 
