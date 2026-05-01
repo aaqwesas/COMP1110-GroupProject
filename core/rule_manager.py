@@ -1,3 +1,4 @@
+from collections.abc import Sequence
 from datetime import timedelta
 from data_model.rules import BudgetRule
 from data_model.schemas import Transaction
@@ -15,7 +16,7 @@ class RuleManager:
             print(f"Warning: Rejected invalid rule configuration '{rule.__class__.__name__}': {e}")
             return False
 
-    def process_transaction(self, transaction: Transaction, history: list[Transaction]):
+    def process_transaction(self, transaction: Transaction, history: Sequence[Transaction]):
         periods = [rule.period for rule in self.rules if rule.period is not None]
 
         recent_history = []
