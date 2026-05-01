@@ -34,11 +34,11 @@ class BudgetMenu:
         self.expenses: list[Expense] = []
         self.incomes: list[Income] = []
         self.rule_manager = RuleManager()
-        self.transactions_file = Path("data/transactions.jsonl")
+        self.expenses_file = Path("data/expenses.jsonl")
         self.incomes_file = Path("data/incomes.jsonl")
         self.rules_file = Path("data/rules.json")
-        self.transactions_file.parent.mkdir(parents=True, exist_ok=True)
-        self.transactions_file.touch(exist_ok=True)
+        self.expenses_file.parent.mkdir(parents=True, exist_ok=True)
+        self.expenses_file.touch(exist_ok=True)
         self.incomes_file.touch(exist_ok=True)
         if not self.rules_file.exists():
             self.rules_file.write_text("[]")
@@ -99,8 +99,8 @@ class BudgetMenu:
     def _load_data(self):
         """Load transactions and rules from files"""
         # 1. Load Expenses
-        if getattr(self, "transactions_file", None):
-            parser = ExpenseParser(self.transactions_file)
+        if getattr(self, "expenses_file", None):
+            parser = ExpenseParser(self.expenses_file)
             self.expenses = list(parser.parse())
             if self.expenses:
                 print(f"Loaded {len(self.expenses)} expenses")
@@ -157,7 +157,7 @@ class BudgetMenu:
             output_parser = GenericOutputParser()
 
             if self.expenses:
-                output_parser(self.transactions_file, self.expenses)
+                output_parser(self.expenses_file, self.expenses)
 
             if self.incomes:
                 output_parser(self.incomes_file, self.incomes)
