@@ -29,8 +29,8 @@ class RuleOperator(str, Enum):
 class BudgetRule(ABC):
     alert: Alert
     period: int
-    operator: RuleOperator
     threshold: float
+    operator: RuleOperator
 
     def __post_init__(self) -> None:
         if self.period is not None and self.period <= 0:

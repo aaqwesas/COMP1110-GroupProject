@@ -108,7 +108,7 @@ class TestBudgetRules(unittest.TestCase):
         self.assertTrue(self.alert.triggered)
 
     def test_uncategorized_warning(self):
-        rule = UncategorizedWarningRule(alert=self.alert)
+        rule = UncategorizedWarningRule(alert=self.alert, period=100, threshold=1000, operator=RuleOperator.GT)
 
         tx_valid = self.create_expense(50.0, ExpenseCategory.FOOD)
         self.assertFalse(rule.evaluate(tx_valid, []))
@@ -120,7 +120,8 @@ class TestBudgetRules(unittest.TestCase):
         rule = SingleTransactionRule(
             alert=self.alert,
             operator=RuleOperator.GT,
-            threshold=500.0
+            threshold=500.0,
+            period = 1000
         )
 
         tx_normal = self.create_expense(100.0)
