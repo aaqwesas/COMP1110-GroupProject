@@ -41,7 +41,8 @@ class BudgetMenu:
         self.expenses_file.touch(exist_ok=True)
         self.incomes_file.touch(exist_ok=True)
         if not self.rules_file.exists():
-            self.rules_file.write_text("[]")
+            self.rules_file.write_text("[]", encoding="utf-8")
+        self._load_data()
 
 
     def run(self):
