@@ -1,5 +1,5 @@
 import logging
-
+from typing import Union
 
 class ColorFormatter(logging.Formatter):
     COLORS = {
