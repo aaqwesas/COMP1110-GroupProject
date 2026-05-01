@@ -159,10 +159,10 @@ class BudgetMenu:
             output_parser = GenericOutputParser()
 
             if self.expenses:
-                output_parser(self.expenses_file, self.expenses)
+                output_parser(path=self.expenses_file, records=self.expenses)
 
             if self.incomes:
-                output_parser(self.incomes_file, self.incomes)
+                output_parser(path=self.incomes_file, records=self.incomes)
 
             rule_dicts = [rule.to_dict() for rule in self.rule_manager.rules]
             with open(self.rules_file, "w", encoding="utf-8") as rf:

@@ -20,6 +20,7 @@ class GenericOutputParser[T: Transaction]:
         with open(file=path, mode="a", encoding="utf-8") as file:
             for item in records:
                 self._handle_record(item=item, file=file)
+            file.write("\n")
 
     def _handle_record(self, item: T, file: TextIOWrapper) -> None:
         parsed_dict = ParsedFormat(
