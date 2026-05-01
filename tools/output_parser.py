@@ -17,11 +17,13 @@ class ParsedFormat(TypedDict):
 
 class GenericOutputParser[T: Transaction]:
     def __call__(self, path: Path, records: Iterable[T]) -> None:
+        
+        path.parent.mkdir(parents=True, exist_ok=True)
+        
         with open(file=path, mode="a", encoding="utf-8") as file:
             for item in records:
                 self._handle_record(item=item, file=file)
-            file.write("\n")
-
+    
     def _handle_record(self, item: T, file: TextIOWrapper) -> None:
         parsed_dict = ParsedFormat(
             id=item.id,
@@ -30,6 +32,8 @@ class GenericOutputParser[T: Transaction]:
             category=item.category.name,
             description=item.description,
         )
-
-        json.dump(parsed_dict, file)
+        
+        json.dump(parsed_dict, file, separators=(',', ':'))
         file.write("\n")
+        
+        file.flush()
