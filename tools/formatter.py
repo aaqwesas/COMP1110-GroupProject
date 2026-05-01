@@ -24,7 +24,7 @@ class ColorFormatter(logging.Formatter):
 
 
 def set_logger(
-    level: logging._Level = logging.DEBUG,
+    level: Union[int, str] = logging.DEBUG,
     fmt: str = "%(asctime)s | %(levelname)-8s | %(message)s",
 ) -> logging.Logger:
 
