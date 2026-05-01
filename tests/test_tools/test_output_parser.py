@@ -203,8 +203,7 @@ class TestOutputParser(unittest.TestCase):
         ]
         self.parser(self.temp_path, records)
 
-        with open(self.temp_path, "r", encoding="utf-8") as f:
-            lines = f.readlines()
+        lines = self._read_non_empty_lines()
 
         self.assertEqual(len(lines), len(ExpenseCategory))
         categories_in_file = {json.loads(line)["category"] for line in lines}
