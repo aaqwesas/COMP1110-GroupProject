@@ -1,0 +1,9 @@
+[
+    {
+        "rule_type": "CategoryBudgetRule",
+        "alert_type": "ConsoleAlert",
+        "period": 5,
+        "operator": ">=",
+        "threshold": 10000.0
+    }
+]

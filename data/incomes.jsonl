@@ -1,0 +1,30 @@
+{"id": "inc_001", "date": "2025-01-15", "amount": 5000.0, "category": "SALARY", "description": "January salary"}
+{"id": "inc_002", "date": "2025-01-20", "amount": 1000.0, "category": "FREELANCE", "description": "Website project"}
+{"id": "inc_003", "date": "2025-02-14", "amount": 5200.0, "category": "SALARY", "description": "February salary"}
+{"id": "inc_004", "date": "2025-02-28", "amount": 500.0, "category": "DIVIDEND", "description": "Quarterly dividends"}
+{"id": "inc_005", "date": "2025-03-14", "amount": 5200.0, "category": "SALARY", "description": "March salary"}
+{"id": "inc_006", "date": "2025-03-20", "amount": 2000.0, "category": "BONUS", "description": "Q1 performance bonus"}
+{"id": "inc_007", "date": "2025-04-15", "amount": 5200.0, "category": "SALARY", "description": "April salary"}
+{"id": "inc_008", "date": "2025-04-18", "amount": 3000.0, "category": "TRADE", "description": "Stock sale profit"}
+{"id": "inc_009", "date": "2025-05-15", "amount": 5400.0, "category": "SALARY", "description": "May salary (raise)"}
+{"id": "inc_010", "date": "2025-05-20", "amount": 800.0, "category": "FREELANCE", "description": "Mobile app consulting"}
+{"id": "inc_011", "date": "2025-06-13", "amount": 5400.0, "category": "SALARY", "description": "June salary"}
+{"id": "inc_012", "date": "2025-06-25", "amount": 2500.0, "category": "BONUS", "description": "Mid-year bonus"}
+{"id": "inc_013", "date": "2025-07-15", "amount": 5400.0, "category": "SALARY", "description": "July salary"}
+{"id": "inc_014", "date": "2025-07-30", "amount": 600.0, "category": "DIVIDEND", "description": "Dividend payment"}
+{"id": "inc_015", "date": "2025-08-14", "amount": 5500.0, "category": "SALARY", "description": "August salary"}
+{"id": "inc_016", "date": "2025-08-22", "amount": 1500.0, "category": "FREELANCE", "description": "Data analysis project"}
+{"id": "inc_017", "date": "2025-09-15", "amount": 5500.0, "category": "SALARY", "description": "September salary"}
+{"id": "inc_018", "date": "2025-10-15", "amount": 5500.0, "category": "SALARY", "description": "October salary"}
+{"id": "inc_019", "date": "2025-10-28", "amount": 1200.0, "category": "TRADE", "description": "Crypto profit"}
+{"id": "inc_020", "date": "2025-11-14", "amount": 5600.0, "category": "SALARY", "description": "November salary"}
+{"id": "inc_021", "date": "2025-11-20", "amount": 1000.0, "category": "BONUS", "description": "Referral bonus"}
+{"id": "inc_022", "date": "2025-12-15", "amount": 5600.0, "category": "SALARY", "description": "December salary"}
+{"id": "inc_023", "date": "2025-12-23", "amount": 3000.0, "category": "BONUS", "description": "Year-end bonus"}
+{"id": "inc_024", "date": "2025-12-28", "amount": 400.0, "category": "DIVIDEND", "description": "Special dividend"}
+{"id": "inc_025", "date": "2024-12-20", "amount": 10000.0, "category": "INVESTMENT", "description": "Property sale"}
+{"id": "inc_026", "date": "2024-11-10", "amount": 750.0, "category": "FREELANCE", "description": "Translation work"}
+{"id": "inc_027", "date": "2024-10-05", "amount": 4800.0, "category": "SALARY", "description": "Old job salary"}
+{"id": "inc_028", "date": "2024-09-01", "amount": 200.0, "category": "DIVIDEND", "description": "Small dividend"}
+{"id": "inc_029", "date": "2026-01-15", "amount": 5800.0, "category": "SALARY", "description": "January 2026 salary"}
+{"id": "inc_030", "date": "2026-01-25", "amount": 2000.0, "category": "BONUS", "description": "Q4 performance bonus"}

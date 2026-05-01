@@ -102,15 +102,13 @@ class BudgetMenu:
         if getattr(self, "expenses_file", None):
             parser = ExpenseParser(self.expenses_file)
             self.expenses = list(parser.parse())
-            if self.expenses:
-                print(f"Loaded {len(self.expenses)} expenses")
+            print(f"Loaded {len(self.expenses)} expenses")
 
         # 2. Load Incomes
         if getattr(self, "incomes_file", None):
             parser = IncomeParser(self.incomes_file)
             self.incomes = list(parser.parse())
-            if self.incomes:
-                print(f"Loaded {len(self.incomes)} incomes")
+            print(f"Loaded {len(self.incomes)} incomes")
 
         # 3. Load Rules
         if getattr(self, "rules_file", None):
@@ -128,24 +126,26 @@ class BudgetMenu:
                         "SingleTransactionRule": SingleTransactionRule,
                         "PercentageThresholdRule": PercentageThresholdRule,
                         "UncategorizedWarningRule": UncategorizedWarningRule,
-                        "ConsecutiveOverspendRule": ConsecutiveOverspendRule
+                        "ConsecutiveOverspendRule": ConsecutiveOverspendRule,
                     }
 
                     alert_classes_map = {
                         "ConsoleAlert": ConsoleAlert,
-                        "FileAlert": FileAlert
+                        "FileAlert": FileAlert,
                     }
 
                     for r_data in rule_dicts:
                         rule = BudgetRule.from_dict(
                             r_data,
                             rule_classes_map=rule_classes_map,
-                            alert_classes_map=alert_classes_map
+                            alert_classes_map=alert_classes_map,
                         )
                         self.rule_manager.add_rule(rule)
                     print(f"Loaded {len(self.rule_manager.rules)} active rules")
                 except json.JSONDecodeError:
-                    print("Error: The budget rules file is malformed or corrupted. Cannot load rules.")
+                    print(
+                        "Error: The budget rules file is malformed or corrupted. Cannot load rules."
+                    )
                 except PermissionError:
                     print(f"Error: Permission denied when trying to read rules file.")
                 except Exception as e:
@@ -295,7 +295,9 @@ class BudgetMenu:
         if choice == "2":
             start_date = None
             while True:
-                start_str = input("Start Date (YYYY-MM-DD) [Leave blank for no start]: ").strip()
+                start_str = input(
+                    "Start Date (YYYY-MM-DD) [Leave blank for no start]: "
+                ).strip()
                 if not start_str:
                     break
                 try:
@@ -306,7 +308,9 @@ class BudgetMenu:
 
             end_date = None
             while True:
-                end_str = input("End Date (YYYY-MM-DD) [Leave blank for no end]: ").strip()
+                end_str = input(
+                    "End Date (YYYY-MM-DD) [Leave blank for no end]: "
+                ).strip()
                 if not end_str:
                     break
                 try:
@@ -316,7 +320,9 @@ class BudgetMenu:
                     print("Invalid date format. Please use YYYY-MM-DD or leave blank.")
 
             if start_date:
-                filtered_expenses = [e for e in filtered_expenses if e.date >= start_date]
+                filtered_expenses = [
+                    e for e in filtered_expenses if e.date >= start_date
+                ]
                 filtered_incomes = [i for i in filtered_incomes if i.date >= start_date]
 
             if end_date:
@@ -324,9 +330,17 @@ class BudgetMenu:
                 filtered_incomes = [i for i in filtered_incomes if i.date <= end_date]
 
         elif choice == "3":
-            cat_str = input("Enter category name (e.g., FOOD, SALARY, RENT): ").strip().upper()
-            filtered_expenses = [e for e in filtered_expenses if e.category.name == cat_str]
-            filtered_incomes = [i for i in filtered_incomes if i.category.name == cat_str]
+            cat_str = (
+                input("Enter category name (e.g., FOOD, SALARY, RENT): ")
+                .strip()
+                .upper()
+            )
+            filtered_expenses = [
+                e for e in filtered_expenses if e.category.name == cat_str
+            ]
+            filtered_incomes = [
+                i for i in filtered_incomes if i.category.name == cat_str
+            ]
 
         elif choice != "1":
             print("Invalid choice. Displaying all transactions.")
@@ -340,14 +354,20 @@ class BudgetMenu:
             return
 
         print("\n" + "-" * 70)
-        print(f"{'Type':<8} {'Date':<12} {'Amount':<10} {'Category':<15} {'Description'}")
+        print(
+            f"{'Type':<8} {'Date':<12} {'Amount':<10} {'Category':<15} {'Description'}"
+        )
         print("-" * 70)
 
         for e in expenses:
-            print(f"{'Expense':<8} {e.date}  -${e.amount:<9.2f} {e.category.name:<15} {e.description[:30]}")
+            print(
+                f"{'Expense':<8} {e.date}  -${e.amount:<9.2f} {e.category.name:<15} {e.description[:30]}"
+            )
 
         for i in incomes:
-            print(f"{'Income':<8} {i.date}  +${i.amount:<9.2f} {i.category.name:<15} {i.description[:30]}")
+            print(
+                f"{'Income':<8} {i.date}  +${i.amount:<9.2f} {i.category.name:<15} {i.description[:30]}"
+            )
 
         print("-" * 70)
         total_expense = sum(e.amount for e in expenses)
