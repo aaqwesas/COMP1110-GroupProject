@@ -1,3 +1,4 @@
+from collections.abc import Sequence
 from dataclasses import dataclass
 from data_model.rules import BudgetRule
 from data_model.schemas import Transaction, Expense
@@ -6,7 +7,7 @@ from datetime import timedelta
 
 @dataclass(slots=True)
 class CategoryBudgetRule(BudgetRule):
-    def evaluate(self, transaction: Transaction, history: list[Transaction]) -> bool:
+    def evaluate(self, transaction: Transaction, history: Sequence[Transaction]) -> bool:
         if not isinstance(transaction, Expense):
             return False
 
@@ -14,6 +15,8 @@ class CategoryBudgetRule(BudgetRule):
         period_total = 0.0
 
         for past_transaction in history:
+            if past_transaction is transaction:
+                continue
             if isinstance(past_transaction, Expense):
                 if start_date <= past_transaction.date <= end_date:
                     if past_transaction.category == transaction.category:

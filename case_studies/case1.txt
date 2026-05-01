@@ -1,0 +1,12 @@
+6
+3
+100
+>=
+1
+1
+2026-05-01
+1000
+RENT
+Paying rent for my house
+8
+n
