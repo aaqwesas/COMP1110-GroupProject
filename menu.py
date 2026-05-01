@@ -43,7 +43,6 @@ class BudgetMenu:
         if not self.rules_file.exists():
             self.rules_file.write_text("[]")
 
-        self._load_data()
 
     def run(self):
         """Main program loop"""
@@ -70,6 +69,8 @@ class BudgetMenu:
             elif choice == "8":
                 if self._confirm_exit():
                     break
+            elif choice == "9":
+                self._load_data()
             else:
                 print("Invalid choice. Enter 1-8.")
 
@@ -94,6 +95,7 @@ class BudgetMenu:
         print("6. Configure Budget Rules")
         print("7. Save Data")
         print("8. Exit")
+        print("9. Load Data")
         print("-" * 40)
 
     def _load_data(self):
