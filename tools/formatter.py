@@ -1,5 +1,4 @@
 import logging
-from typing import Union
 
 class ColorFormatter(logging.Formatter):
     COLORS = {
@@ -24,7 +23,7 @@ class ColorFormatter(logging.Formatter):
 
 
 def set_logger(
-    level: Union[int, str] = logging.DEBUG,
+    level: int | str = logging.DEBUG,
     fmt: str = "%(asctime)s | %(levelname)-8s | %(message)s",
 ) -> logging.Logger:
 
